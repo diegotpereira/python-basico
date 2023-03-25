@@ -39,29 +39,37 @@ while True:
 
         print('Isto é o que está no seu carrinho de compras: ')
 
-        for item in carrinho:
+        for i, item_carrinho in enumerate(carrinho):
 
-            print(item, preco)
+            preco = precos[i]
 
-            ok = input('pressione ok quando terminar ')
+            print(f"{i + 1}. {item_carrinho} - R${preco}")
 
-            if item != ok:
-                break
+        # ok = input('pressione ok quando terminar ')
+        if not carrinho:
+            print('Seu carrinho está vazio.')
+
+        input("Pressione enter para continuar...")
+        continue
 
     if digitado == 3:
         retirar = input('Digite o que você gostaria de remover? ')
-        carrinho.remove(retirar)
+        
+        if retirar in carrinho:
+            index = carrinho.index(retirar)
+            carrinho.remove(retirar)
+            preco = precos.pop(index)
+            print(f"{retirar} removido do carrinho. Preço: R${preco}")
+
+        else:
+            print('Item não encontrado no carrinho.')
+
         continue
 
     if digitado == 4:
             
             preco_total = sum(precos)
             print(f"O total é R$ {preco_total}")
-
-        # for preco in preco_total:
-        #     sum += preco
-        #     print(sum(preco_total))
-        #     input('digite ok quando terminar')
 
             if item != 'ok':
                 break
